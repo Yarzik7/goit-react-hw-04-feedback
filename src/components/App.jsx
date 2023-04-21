@@ -25,11 +25,23 @@ class App extends Component {
   };
 
   onClickGood = () => this.setState(({ good }) => ({ good: good + 1 }));
-  onClickNeutral = () => this.setState(({ neutral }) => ({ neutral: neutral + 1 }));
+
+  onClickNeutral = () =>
+    this.setState(({ neutral }) => ({ neutral: neutral + 1 }));
+  
   onClickBad = () => this.setState(({ bad }) => ({ bad: bad + 1 }));
+
+  countTotalFeedback = () =>
+    Object.values(this.state).reduce((acc, val) => acc + val);
+  
+  countPositiveFeedbackPercentage = (good, total) =>
+    Math.floor((good / total) * 100);
 
   render() {
     const { good, neutral, bad } = this.state;
+    const total = this.countTotalFeedback();
+    const positivePercentage =
+      this.countPositiveFeedbackPercentage(good, total) || '0';
     return (
       <section>
         <h1>Please leave feedback</h1>
@@ -45,6 +57,8 @@ class App extends Component {
           <p>Good: {good}</p>
           <p>Neutral: {neutral}</p>
           <p>Bad: {bad}</p>
+          <p>Total: {total}</p>
+          <p>Positive feedback: {positivePercentage}%</p>
         </div>
       </section>
     );
