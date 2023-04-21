@@ -24,22 +24,27 @@ class App extends Component {
     bad: 0,
   };
 
+  onClickGood = () => this.setState(({ good }) => ({ good: good + 1 }));
+  onClickNeutral = () => this.setState(({ neutral }) => ({ neutral: neutral + 1 }));
+  onClickBad = () => this.setState(({ bad }) => ({ bad: bad + 1 }));
+
   render() {
+    const { good, neutral, bad } = this.state;
     return (
       <section>
         <h1>Please leave feedback</h1>
 
         <div>
-          <button>Good</button>
-          <button>Neutral</button>
-          <button>Bad</button>
+          <button onClick={this.onClickGood}>Good</button>
+          <button onClick={this.onClickNeutral}>Neutral</button>
+          <button onClick={this.onClickBad}>Bad</button>
         </div>
 
         <div>
           <h2>Statistics</h2>
-          <p>Good: </p>
-          <p>Neutral: </p>
-          <p>Bad: </p>
+          <p>Good: {good}</p>
+          <p>Neutral: {neutral}</p>
+          <p>Bad: {bad}</p>
         </div>
       </section>
     );
