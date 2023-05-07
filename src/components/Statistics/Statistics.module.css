@@ -1,0 +1,9 @@
+.caption {
+    margin: 0;
+    font-size: 18px;
+}
+
+.caption:not(:last-child) {
+    margin-bottom: 20px;
+}
+

@@ -1,9 +1,24 @@
+import PropTypes from 'prop-types';
+import css from './FeedbackOptions.module.css';
+
 export default function FeedbackOptions({ options, onLeaveFeedback }) {
   return (
-    <div>
+    <div className={css.feedback}>
       {options.map(feedback => (
-        <button key={feedback} onClick={onLeaveFeedback} data-feedback={feedback}>{feedback.replace(/^[a-z]/, char => char.toUpperCase())}</button>
+        <button
+          key={feedback}
+          className={css.button}
+          onClick={onLeaveFeedback}
+          data-feedback={feedback}
+        >
+          {feedback.replace(/^[a-z]/, char => char.toUpperCase())}
+        </button>
       ))}
     </div>
   );
 }
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
