@@ -6,12 +6,13 @@ export default function FeedbackOptions({ options, onLeaveFeedback }) {
     <div className={css.feedback}>
       {options.map(feedback => (
         <button
+          type='button'
           key={feedback}
           className={css.button}
           onClick={onLeaveFeedback}
           data-feedback={feedback}
         >
-          {feedback.replace(/^[a-z]/, char => char.toUpperCase())}
+          {feedback}
         </button>
       ))}
     </div>
