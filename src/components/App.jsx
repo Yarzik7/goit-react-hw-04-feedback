@@ -10,17 +10,15 @@ const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const onLeaveFeedback = ({ target }) => {
-    const { feedback } = target.dataset;
-
+  const onLeaveFeedback = (feedback) => {
     switch (feedback) {
-      case 'Good':
+      case 'good':
         setGood(prevValue => prevValue + 1);
         break;
-      case 'Neutral':
+      case 'neutral':
         setNeutral(prevValue => prevValue + 1);
         break;
-      case 'Bad':
+      case 'bad':
         setBad(prevValue => prevValue + 1);
         break;
       default:
@@ -32,6 +30,8 @@ const App = () => {
 
   const countPositiveFeedbackPercentage = () => Math.floor((good / total) * 100);
 
+  const options = Object.keys({ good, neutral, bad });
+
   const total = countTotalFeedback();
   const positivePercentage = countPositiveFeedbackPercentage();
 
@@ -39,7 +39,7 @@ const App = () => {
     <section className={css.section}>
       <Section title="Please leave feedback">
         <FeedbackOptions
-          options={['Good', 'Neutral', 'Bad']}
+          options={options}
           onLeaveFeedback={onLeaveFeedback}
         />
       </Section>
