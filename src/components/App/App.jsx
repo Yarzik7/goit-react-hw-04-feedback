@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Section from './Section/Section';
-import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
-import Statistics from './Statistics/Statistics';
-import Notification from './Notification/Notification';
+import Section from '../Section/Section';
+import FeedbackOptions from '../FeedbackOptions/FeedbackOptions';
+import Statistics from '../Statistics/Statistics';
+import Notification from '../Notification/Notification';
 import css from './App.module.css';
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const onLeaveFeedback = (feedback) => {
+  const onLeaveFeedback = feedback => {
     switch (feedback) {
       case 'good':
         setGood(prevValue => prevValue + 1);
@@ -28,7 +28,8 @@ const App = () => {
 
   const countTotalFeedback = () => good + neutral + bad;
 
-  const countPositiveFeedbackPercentage = () => Math.floor((good / total) * 100);
+  const countPositiveFeedbackPercentage = () =>
+    Math.floor((good / total) * 100);
 
   const options = Object.keys({ good, neutral, bad });
 
@@ -38,10 +39,7 @@ const App = () => {
   return (
     <section className={css.section}>
       <Section title="Please leave feedback">
-        <FeedbackOptions
-          options={options}
-          onLeaveFeedback={onLeaveFeedback}
-        />
+        <FeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback} />
       </Section>
 
       <Section title="Statistics">
@@ -54,7 +52,7 @@ const App = () => {
             positivePercentage={positivePercentage}
           />
         ) : (
-            <Notification message='No feedback given' />
+          <Notification message="No feedback given" />
         )}
       </Section>
     </section>
